@@ -37,11 +37,16 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion Libraries.AndroidX.Compose.version
-        kotlinCompilerVersion '1.4.30'
+        kotlinCompilerVersion Libraries.Kotlin.version
     }
 }
 
 dependencies {
+    implementation Libraries.Kotlin.stdlib
+
+    implementation Libraries.Coroutines.core
+    implementation Libraries.Coroutines.android
+
     implementation Libraries.AndroidX.coreKtx
     implementation Libraries.AndroidX.AppCompat.appCompat
     implementation Libraries.AndroidX.Lifecycle.runtimeKtx
@@ -61,12 +66,15 @@ dependencies {
     implementation Libraries.AndroidX.Compose.uiTooling
     implementation Libraries.AndroidX.Compose.uiUtil
 
-    implementation Libraries.Coroutines.core
-    implementation Libraries.Coroutines.android
-
     implementation Libraries.Accompanist.coil
 
     implementation Libraries.Material.material
+
+    implementation Libraries.Moshi.moshi
+    implementation Libraries.Moshi.moshiKotlin
+
+    implementation Libraries.Retrofit.retrofit2
+    implementation Libraries.Retrofit.converterMoshi
 
     testImplementation Libraries.JUnit.junit
     testImplementation Libraries.Coroutines.test

@@ -1,6 +1,13 @@
 package com.quicksilver.sidecar.buildsrc
 
 object Libraries {
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha08"
+
+    object Kotlin {
+        const val version = "1.4.30"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
+        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
+    }
 
     object Coroutines {
         private const val version = "1.4.1"
@@ -65,6 +72,11 @@ object Libraries {
         }
     }
 
+    object JUnit {
+        private const val version = "4.13.2"
+        const val junit = "junit:junit:$version"
+    }
+
     object Material {
         const val material = "com.google.android.material:material:1.3.0"
     }
@@ -74,8 +86,15 @@ object Libraries {
         const val coil = "dev.chrisbanes.accompanist:accompanist-coil:$version"
     }
 
-    object JUnit {
-        private const val version = "4.13.2"
-        const val junit = "junit:junit:$version"
+    object Moshi {
+        private const val version = "1.11.0"
+        const val moshi = "com.squareup.moshi:moshi:$version"
+        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$version"
+    }
+
+    object Retrofit {
+        private const val version = "2.9.0"
+        const val retrofit2 = "com.squareup.retrofit2:retrofit:$version"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
     }
 }
