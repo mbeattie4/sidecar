@@ -1,10 +1,13 @@
 package com.quicksilver.sidecar.ui.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -12,12 +15,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 import com.quicksilver.sidecar.model.Drink
 import com.quicksilver.sidecar.model.testDrinks
+import com.quicksilver.sidecar.ui.theme.Purple200
 import com.quicksilver.sidecar.ui.theme.SidecarTheme
 
 @Composable
@@ -32,10 +37,12 @@ fun DrinkCard(drink: Drink, modifier: Modifier = Modifier, drinkSelected: (Strin
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth().wrapContentHeight()
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
         ) {
-            CoilImage(
-                data = drink.thumbnail,
+            Image(
+                painter = rememberCoilPainter(request = drink.thumbnail),
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.requiredSize(100.dp)
@@ -43,10 +50,29 @@ fun DrinkCard(drink: Drink, modifier: Modifier = Modifier, drinkSelected: (Strin
             Text(
                 text = drink.name,
                 style = MaterialTheme.typography.h5,
-                modifier = Modifier.weight(1.0f).padding(start = 8.dp)
+                modifier = Modifier
+                    .weight(1.0f)
+                    .padding(start = 8.dp)
+            )
+            DrinkChip(
+                drink = drink,
+                modifier = Modifier.align(Alignment.CenterVertically).padding(horizontal = 8.dp)
             )
         }
     }
+}
+
+@Composable
+fun DrinkChip(drink: Drink, modifier: Modifier = Modifier) {
+    Image(
+        painter = rememberCoilPainter(request = drink.thumbnail),
+        contentDescription = "",
+        contentScale = ContentScale.Crop,
+        modifier = modifier
+            .requiredSize(60.dp)
+            .clip(CircleShape)
+            .border(width = 2.dp, color = Purple200, shape = CircleShape)
+    )
 }
 
 @Composable
