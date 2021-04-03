@@ -60,6 +60,7 @@ dependencies {
     implementation Libraries.AndroidX.Compose.foundation
     implementation Libraries.AndroidX.Compose.foundationLayout
     implementation Libraries.AndroidX.Compose.material
+    implementation Libraries.AndroidX.Compose.materialIconsCore
     implementation Libraries.AndroidX.Compose.materialIconsExtended
     implementation Libraries.AndroidX.Compose.runtime
     implementation Libraries.AndroidX.Compose.ui

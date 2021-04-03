@@ -11,9 +11,9 @@ import com.quicksilver.sidecar.ui.theme.SidecarTheme
 import com.quicksilver.sidecar.ui.theme.Teal200
 
 @Composable
-fun Home() {
+fun Home(drinkSelected: (String) -> Unit = {}) {
     Surface(color = Teal200, modifier = Modifier.fillMaxSize()) {
-        DrinkCards(drinks = testDrinks)
+        DrinkCards(drinks = testDrinks, drinkSelected = drinkSelected)
     }
 }
 

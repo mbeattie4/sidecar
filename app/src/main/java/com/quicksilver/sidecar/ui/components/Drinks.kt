@@ -1,5 +1,6 @@
 package com.quicksilver.sidecar.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,17 +15,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.coil.CoilImage
 import com.quicksilver.sidecar.model.Drink
 import com.quicksilver.sidecar.model.testDrinks
 import com.quicksilver.sidecar.ui.theme.SidecarTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun DrinkCard(drink: Drink, modifier: Modifier = Modifier) {
+fun DrinkCard(drink: Drink, modifier: Modifier = Modifier, drinkSelected: (String) -> Unit = {}) {
     Card(
         shape = MaterialTheme.shapes.medium.copy(CornerSize(16.dp)),
         elevation = 4.dp,
-        modifier = modifier.fillMaxWidth().wrapContentHeight()
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .clickable { drinkSelected(drink.id) }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -46,13 +50,17 @@ fun DrinkCard(drink: Drink, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun DrinkCards(drinks: List<Drink>, modifier: Modifier = Modifier) {
+fun DrinkCards(
+    drinks: List<Drink>,
+    modifier: Modifier = Modifier,
+    drinkSelected: (String) -> Unit = {}
+) {
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = spacedBy(16.dp)
     ) {
-        items(drinks) { drink -> DrinkCard(drink = drink) }
+        items(drinks) { drink -> DrinkCard(drink = drink, drinkSelected = drinkSelected) }
     }
 }
 
