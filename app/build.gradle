@@ -1,17 +1,18 @@
-import com.quicksilver.sidecar.buildsrc.Libraries
-
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'org.jetbrains.kotlin.kapt'
+
+    id("com.apollographql.apollo").version(libs.versions.apollo)
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.quicksilver.sidecar"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -36,54 +37,87 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion Libraries.AndroidX.Compose.version
-        kotlinCompilerVersion Libraries.Kotlin.version
+        kotlinCompilerExtensionVersion libs.versions.compose.get()
     }
 }
 
+apollo {
+    generateKotlinModels.set(true)
+}
+
 dependencies {
-    implementation Libraries.Kotlin.stdlib
+    implementation libs.kotlin.stdlib
 
-    implementation Libraries.Coroutines.core
-    implementation Libraries.Coroutines.android
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.kotlinx.coroutines.core
 
-    implementation Libraries.AndroidX.coreKtx
-    implementation Libraries.AndroidX.AppCompat.appCompat
-    implementation Libraries.AndroidX.Lifecycle.runtimeKtx
-    implementation Libraries.AndroidX.Lifecycle.viewModelKtx
+    implementation libs.androidx.activity.compose
 
-    implementation Libraries.AndroidX.Activity.activityCompose
-    implementation Libraries.AndroidX.ConstraintLayout.constraintLayoutCompose
-    implementation Libraries.AndroidX.Navigation.navigationCompose
+    implementation libs.androidx.core.ktx
 
-    implementation Libraries.AndroidX.Compose.animation
-    implementation Libraries.AndroidX.Compose.foundation
-    implementation Libraries.AndroidX.Compose.foundationLayout
-    implementation Libraries.AndroidX.Compose.material
-    implementation Libraries.AndroidX.Compose.materialIconsCore
-    implementation Libraries.AndroidX.Compose.materialIconsExtended
-    implementation Libraries.AndroidX.Compose.runtime
-    implementation Libraries.AndroidX.Compose.ui
-    implementation Libraries.AndroidX.Compose.uiTooling
-    implementation Libraries.AndroidX.Compose.uiUtil
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.compose
+    implementation libs.androidx.lifecycle.viewmodel.ktx
 
-    implementation Libraries.Accompanist.coil
+    implementation libs.androidx.navigation.compose
 
-    implementation Libraries.Material.material
+    api libs.androidx.room.runtime
 
-    implementation Libraries.Moshi.moshi
-    implementation Libraries.Moshi.moshiKotlin
+    kapt libs.androidx.room.compiler
 
-    implementation Libraries.Retrofit.retrofit2
-    implementation Libraries.Retrofit.converterMoshi
+    implementation libs.androidx.room.common
+    implementation libs.androidx.room.ktx
 
-    testImplementation Libraries.JUnit.junit
-    testImplementation Libraries.Coroutines.test
+    implementation libs.compose.animation.animation
+    implementation libs.compose.foundation.foundation
+    implementation libs.compose.foundation.layout
+    implementation libs.compose.material
+    implementation libs.compose.material.icons.core
+    implementation libs.compose.material.icons.extended
+    implementation libs.compose.ui
+    implementation libs.compose.ui.tooling
+    implementation libs.compose.ui.util
+    implementation libs.compose.ui.viewbinding
 
-    androidTestImplementation Libraries.AndroidX.Compose.uiTest
-    androidTestImplementation Libraries.AndroidX.Test.core
-    androidTestImplementation Libraries.AndroidX.Test.rules
-    androidTestImplementation Libraries.AndroidX.Test.Espresso.espressoCore
-    androidTestImplementation Libraries.AndroidX.Test.Ext.junit
-    androidTestImplementation Libraries.AndroidX.Test.Ext.junitKtx
+    implementation libs.accompanist.flowlayout
+    implementation libs.accompanist.insets
+    implementation libs.accompanist.insetsui
+    implementation libs.accompanist.navigation.animation
+    implementation libs.accompanist.pager
+    implementation libs.accompanist.pager.indicators
+
+    implementation libs.apollo.android.support
+    implementation libs.apollo.coroutines
+    implementation libs.apollo.normalized.cache
+    implementation libs.apollo.runtime
+
+    implementation libs.coil.coil
+    implementation libs.coil.compose
+
+    implementation libs.material
+
+    implementation libs.okhttp.okhttp
+    implementation libs.okhttp.okhttp.logging.interceptor
+
+    implementation libs.retrofit.retrofit
+    implementation libs.retrofit.retrofit.converter.moshi
+
+    implementation libs.moshi.moshi
+    implementation libs.moshi.moshi.kotlin
+
+    kapt libs.moshi.moshi.kotlin.codegen
+
+    testImplementation libs.junit
+
+    testImplementation libs.kotlinx.coroutines.test
+
+    testImplementation libs.androidx.room.testing
+    testImplementation libs.androidx.test.core
+    testImplementation libs.androidx.test.rules
+    testImplementation libs.androidx.test.runner
+
+    testImplementation libs.compose.ui.test
+
+    androidTestImplementation libs.androidx.test.junit
+    androidTestImplementation libs.androidx.test.junit.ktx
 }

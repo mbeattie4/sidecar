@@ -19,7 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.rememberImagePainter
 import com.quicksilver.sidecar.model.Drink
 import com.quicksilver.sidecar.model.testDrinks
 import com.quicksilver.sidecar.ui.theme.Purple200
@@ -42,7 +42,10 @@ fun DrinkCard(drink: Drink, modifier: Modifier = Modifier, drinkSelected: (Strin
                 .wrapContentHeight()
         ) {
             Image(
-                painter = rememberCoilPainter(request = drink.thumbnail),
+                painter = rememberImagePainter(
+                    data = drink.thumbnail,
+                    builder = { crossfade(true) }
+                ),
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.requiredSize(100.dp)
@@ -65,7 +68,10 @@ fun DrinkCard(drink: Drink, modifier: Modifier = Modifier, drinkSelected: (Strin
 @Composable
 fun DrinkChip(drink: Drink, modifier: Modifier = Modifier) {
     Image(
-        painter = rememberCoilPainter(request = drink.thumbnail),
+        painter = rememberImagePainter(
+            data = drink.thumbnail,
+            builder = { crossfade(true) }
+        ),
         contentDescription = "",
         contentScale = ContentScale.Crop,
         modifier = modifier

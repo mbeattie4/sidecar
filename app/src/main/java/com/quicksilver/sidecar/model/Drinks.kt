@@ -6,6 +6,8 @@ data class Drink(
     val thumbnail: String
 )
 
+data class Ingredient(val name: String)
+
 val testDrinks = listOf(
     Drink(
         id = "0",
