@@ -1,28 +1,36 @@
+# Built application files
+*.apk
+*.ap_
+
+# Files for Dex VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+build/
+
+# IDE (Android Studio) project files
 *.iml
-.gradle
-/local.properties
-/.idea/
-/.idea/caches
-/.idea/inspectionProfiles
-/.idea/libraries
-/.idea/.gitignore
-/.idea/.name
-/.idea/assetWizardSettings.xml
-/.idea/checkstyle-idea.xml
-/.idea/compiler.xml
-/.idea/gradle.xml
-/.idea/jarRepositories.xml
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/navEditor.xml
-/.idea/tasks.xml
-/.idea/vcs.xml
-/.idea/workspace.xml
-.DS_Store
-/build
+.idea/*
+gradle.xml
+
+# Android Studio
 /captures
 /buildSrc/build
 /buildSrc/build/
+
+# Local configuration file
+local.properties
+
+# Gradle cache (files)
+.gradle
+
+# Other (miscellaneous)
+.DS_Store
 .externalNativeBuild
 .cxx
-local.properties
